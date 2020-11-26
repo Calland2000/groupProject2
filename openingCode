@@ -1,0 +1,100 @@
+using System;
+
+
+
+namespace project
+
+{
+
+    class Program
+
+    {
+
+        static void Main(string[] args)
+
+        {
+
+            Console.WriteLine("Hello my name is Janica, if you want to stop the conversation at any time, please say goodbye.");
+
+            string greeting1 = "Hello";
+
+            string greeting2 = "Hi";
+
+            string greeting3 = "Hey";
+
+
+
+            string application1 = "job application";
+
+            string application2 = "application";
+
+            string application3 = "carreer opportunity";
+
+
+
+            string background1 = "Background";
+
+            string background2 = "company mission";
+
+            string background3 = "who are you";
+
+            string input = "";
+
+            while (input != "goodbye")
+            {
+                input = Console.ReadLine();
+                if (input.Contains(greeting1) | input.Contains(greeting2) | input.Contains(greeting3)) {
+                    Console.WriteLine(Greeting.GetAnswer());
+                }
+
+                else if (input.Contains(application1) | input.Contains(application2) | input.Contains(application3)) {
+                    Console.WriteLine(Application.GetAnswer());
+                }
+                else if (input.Contains(background1) | input.Contains(background2) | input.Contains(background3)){
+                    Console.WriteLine(Background.GetAnswer());
+                }
+            }
+        }
+
+    }
+
+
+
+    public class Greeting {
+        private static string answer = "How can I help you today?";
+
+        public static string GetAnswer()
+
+        {
+            return answer;
+
+        }
+
+    }
+
+    public class Application {
+
+        private static string answer = "To get a list of all our job opportunities, please go to www.JNC.com/carreer";
+        public static string GetAnswer()
+        {
+            return answer;
+        }
+    }
+
+    public class Background {
+
+        private static string answer = "JNC was founded in 2020 by Jason, Nicolas and Callan. Currently, we are one of the fastest growing start-ups in the United States. If you want more background information, please visit www.JNC.com/background";
+
+        public static string GetAnswer()
+
+        {
+
+            return answer;
+
+        }
+
+    }
+
+
+
+}
