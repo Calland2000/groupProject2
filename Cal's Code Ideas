@@ -1,0 +1,39 @@
+using System
+
+namespace project
+
+{
+
+    class Program
+
+    {
+
+        static void Main(string[] args)
+
+Console.WriteLine("Hello my name is Janica, if you want to stop the conversation at any time, please say goodbye.");
+
+            string greeting1 = "Hello";
+
+            string greeting2 = "Hi";
+
+            string greeting3 = "Hey";
+
+            string greeting4= "Hey Janica";
+  
+  string input = "";
+
+            while (input != "goodbye")
+  
+  input = Console.ReadLine();
+                if (input.Contains(greeting1)) | input.Contains(greeting2) | input.Contains(greeting3)) {
+                    Console.WriteLine(Greeting.GetAnswer());
+                }
+        {
+string mailinglist1 = "email list";
+
+            string mailinglist2 = "quarterly newsletter"
+            
+            }
+            
+        }
+          
