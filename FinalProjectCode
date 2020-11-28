@@ -1,0 +1,139 @@
+using System;
+
+namespace Final_Project
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            // Greeting the visitor of the website
+            Console.WriteLine("Hello, I am the E&Y Virtual Assistant, if you want to stop the conversation at any time, please say goodbye.");
+            // the following variables are all the possible greetings the visitor could give.
+            string greeting1 = "hello";
+            string greeting2 = "hi";
+            string greeting3 = "hey";
+
+            // all possible answers the user can give regarding a request for a job application
+            string application1 = "job application";
+            string application2 = "application";
+            string application3 = "carreer opportunity";
+
+            // all the possible answers a user can give regarding a request for company information
+            string background1 = "background";
+            string background2 = "company mission";
+            string background3 = "who are you";
+
+            // initializing the input variable
+            string input = "";
+
+            // this while loop keeps going until the visitor types in "goodbye"
+            while (input != "goodbye")
+            {
+                // we convert the visitor's input to lower case. In this way there is no difference in for example "Hello" and "hello"
+                input = Console.ReadLine().ToLower();
+                // if the input of the visitor contains one of the three possible greetings we will reply with the appropriate answer
+                if (input.Contains(greeting1) | input.Contains(greeting2) | input.Contains(greeting3))
+                {
+                    // This is the appropriate answer regarding the visitor's request
+                    Console.WriteLine("How can I help you today?");
+                }
+                // if the input of the visitor contains one of the three possible application requests we will reply with the appropriate answer
+                else if (input.Contains(application1) | input.Contains(application2) | input.Contains(application3))
+                {
+                    // we will ask for the visitor's personal information
+                    Console.WriteLine("Please fill in your personal information: ");
+                    // Initializing a string array with three elements
+                    string[] PI = new String[3];
+                    // asking for the visitor's first name
+                    Console.WriteLine("First name: ");
+                    // storing the visitor's answer on the first element
+                    PI[0] = Console.ReadLine();
+                    // asking for the visitor's last name
+                    Console.WriteLine("Last name: ");
+                    // storing the visitor's answer on the second element 
+                    PI[1] = Console.ReadLine();
+                    // asking for the visitor's major
+                    Console.WriteLine("Major: ");
+                    // storing the visitor's answer on the third element and converting it all to lower letters so that there is no difference between Finance and finance
+                    PI[2] = Console.ReadLine().ToLower();
+                    // creating an instance of the Personal_Information class
+                    Personal_Information information1 = new Personal_Information(PI);
+                    // initializing a string array called result
+                    string[] result;
+                    // we will store the information that is returned from the GetInformation method that is part of the Personal_information class
+                    result = information1.GetInformation();
+                    // Create a blank space for design purposes
+                    Console.WriteLine("");
+                    // First output the visitor's last name followed by his/her first name and the following message:
+                    Console.WriteLine("{0} {1}, these are the available jobs for your profile: ", PI[1],PI[0]);
+                    // Create a blank space for design purposes
+                    Console.WriteLine("");
+                    // creating a for loop that will have a number of iterations that is equal to the number of elements in the result list.
+                    // we start counting from 0 so therefore "i <" than the length of the string array and not "i="
+                    for (int i = 0; i < result.Length; i++)
+                    {
+                        // printing every element from the return array coming from the GetInfromation method that is part of the Personal_Information class
+                        Console.WriteLine(result[i]);
+                    }
+                    // after the for loop we ask the visitor if we can help him with something else
+                    Console.WriteLine("Is there something else I can do for you?");
+
+                }
+                // if the visitor's input contains one of the three background string we go to this statement
+                else if (input.Contains(background1) | input.Contains(background2) | input.Contains(background3))
+                {
+                    // we give the visitor the background information of our company
+                    Console.WriteLine("Ersnt and You was Ernst & Young provides audit, tax, business risk, technology and security risk services, and human capital services worldwide. The company, one of the Big Four accounting firms, dates back to the early twentieth century. Scotsman Arthur Young and American Alwin Ernst founded their separate companies in 1906 and 1903, respectively. The companies merged in 1989. Today the company employs over 200,000 people and operates in over 150 countries.");
+                    // We ask the visitor if we can help him with something else
+                    Console.WriteLine("Is there something else I can do for you?");
+                }
+
+            }
+        }
+    }
+    // creating a public class called Personal_Information
+    public class Personal_Information
+    {
+        // initializing four private readonly string arrays that contain open jobs corresponding to a certain major. The last string array is used if there are no open jobs correpsonding to the visitor's major
+        private static readonly string[] Finance = {"Financial consultant", "Merger and acquisition junior", "junior in alternative investment strategies", "assistant equity manager" };
+        private static readonly string[] Business = { "Business Analyst", "junior Strategy Consultant", "Operational risk analyst", "sales representative" };
+        private static readonly string[] InformationSystems = { "Technology and digital risk consultant", "Technology consultant", "Robotic process automation developper", "Database  developer" };
+        private static readonly string[] No_Result = { "We currently have no open positions for your specific profile" };
+        // initializing a private static string array named answer
+        private static string[] answer;
+        // creating a method that used a string array as input value
+        public Personal_Information(string[] newInfomration)
+        {
+            // initializing a  string array regarding the input value of the method.
+            string[] information = newInfomration;
+            // if the value of the third element in the string array infromation is equal to finance
+            if (information[2] == "Finance")
+            {
+                // set the string array "answer" equal to the "Finance" array. The answer array now contains all the elements that are in the Finance array.
+                answer = Finance;
+            }
+            // if the value of the third element in the string array infromation is equal to business
+            else if (information[2] == "Business")
+            {
+                // set the string array "answer" equal to the "Business" array. The answer array now contains all the elements that are in the Business array.
+                answer = Business;
+            }
+            // if the value of the third element in the string array infromation is equal to information systems
+            else if (information[2] == "Information Systems")
+            {
+                // set the string array "answer" equal to the "InformationSystems" array. The answer array now contains all the elements that are in the InformationSystems array.
+                answer = InformationSystems;
+            }
+            else
+            {
+                // set the string array "answer" equal to the "No_result" array. The answer array now contains all the elements that are in the No_Result array.
+                answer = No_Result;
+            }
+        }
+        // making a getter class that returns the answer string array result.
+        public string [] GetInformation()
+        {
+            return answer;
+        }
+    }
+}
